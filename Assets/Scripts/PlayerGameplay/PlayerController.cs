@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         pawn = GetComponent<CharacterController>();
+        Vector3 rot = transform.rotation.eulerAngles;
+        rotation = rot.y;
     }
 
     // Update is called once per frame
@@ -21,7 +23,6 @@ public class PlayerController : MonoBehaviour
     {
         ////////////////////////////////////// Rotation
         float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
 
         rotation += mouseX * inputSensitivity * Time.deltaTime;
 

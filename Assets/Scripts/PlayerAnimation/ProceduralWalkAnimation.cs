@@ -53,9 +53,9 @@ public class ProceduralWalkAnimation : MonoBehaviour
     Vector3 FindMovement()
     {
         Vector3 A = new Vector3(0, 0, 0);
-        Vector3 localForward = transform.worldToLocalMatrix.MultiplyVector(player.gameObject.transform.forward);
+        Vector3 localForward = transform.worldToLocalMatrix.MultiplyVector(player.gameObject.transform.up);
         Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector(player.gameObject.transform.right);
-        A -= localRight * Input.GetAxis("Horizontal");
+        A += localRight * Input.GetAxis("Horizontal");
         A += localForward * Input.GetAxis("Vertical");
         return A;
     }
