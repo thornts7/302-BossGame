@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5;
     CharacterController pawn;
+    float rotation = 180f;
+    float inputSensitivity = 150;
 
     public Vector3 walkDir { get; private set; }
 
@@ -17,6 +19,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ////////////////////////////////////// Rotation
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        rotation += mouseX * inputSensitivity * Time.deltaTime;
+
+        Quaternion localRotation = Quaternion.Euler(0, rotation, 0.0f);
+        transform.rotation = localRotation;
+
+        ////////////////////////////////////// Movement
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 

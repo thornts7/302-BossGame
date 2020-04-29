@@ -9,6 +9,8 @@ public class ProceduralWalkAnimation : MonoBehaviour
     Vector3 hintStartingPos;
     float magnitude = 2;
 
+    Vector3 Currpos;
+    float p = 1;
 
     public float sinWaveSpeed;
     public float sinWaveOffset;
@@ -23,32 +25,38 @@ public class ProceduralWalkAnimation : MonoBehaviour
         startingPosition = transform.localPosition;
         hintStartingPos = HintPos.localPosition;
         player = GetComponentInParent<PlayerController>();
+
+        Currpos = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
         float time = (Time.time + sinWaveOffset * Mathf.PI) * sinWaveSpeed;
-        float offsetZ = Mathf.Cos(time)/magnitude;
+        float offsetForward = Mathf.Cos(time)/magnitude;
         float offestY = Mathf.Cos(time)/magnitude;
-        if (offestY < 0.1f) offestY = 0.1f;
+        if (offestY < 0f) offestY = 0f;
         
         Vector3 finalPosition = startingPosition;
-        Vector3 finalHintPosition = hintStartingPos;
+        //Vector3 finalHintPosition = hintStartingPos;
 
         finalPosition.x *= feetDistancing;
+
+        Vector3 Movement = FindMovement();
+        if (Movement.x == 0 && Movement.z == 0) offestY = 0;
         finalPosition.y += offestY * footHeight; // move final position up or down
-
-        Vector3 walkDir = transform.InverseTransformDirection(player.walkDir);
-        float Y = walkDir.y;
-        float Z = walkDir.z;
-        walkDir.z = Y;
-        walkDir.x = Z;
-        walkDir.y = 0;
-
-        finalPosition += walkDir * offsetZ * howFarFeetGo;
-        finalHintPosition += walkDir * offsetZ;
+        finalPosition.z += Movement.x * offsetForward * howFarFeetGo;
+        finalPosition.x += Movement.z * offsetForward * howFarFeetGo;
 
         transform.localPosition = finalPosition;
+    }
+    Vector3 FindMovement()
+    {
+        Vector3 A = new Vector3(0, 0, 0);
+        Vector3 localForward = transform.worldToLocalMatrix.MultiplyVector(player.gameObject.transform.forward);
+        Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector(player.gameObject.transform.right);
+        A -= localRight * Input.GetAxis("Horizontal");
+        A += localForward * Input.GetAxis("Vertical");
+        return A;
     }
 }
