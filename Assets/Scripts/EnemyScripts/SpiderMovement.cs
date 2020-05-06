@@ -7,18 +7,44 @@ public class SpiderMovement : MonoBehaviour
 {
     public List<GameObject> MovePoints = new List<GameObject>();
     NavMeshAgent Enemy;
+    Vector3 target;
+    int targetNumber = 1;
+    int prevNumber;
+    float Rotation = 0;
+
     Vector3 StartPos;
 
     void Start()
     {
         Enemy = gameObject.GetComponent<NavMeshAgent>();
-        Enemy.SetDestination(MovePoints[1].transform.position);
+        target = MovePoints[targetNumber].transform.position;
+        Enemy.SetDestination(target);
+        Enemy.updateRotation = false;
         StartPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, target) < 1)
+        {
+            int newTarget = Random.Range(0, 3);
+            while (newTarget == targetNumber)
+            {
+                newTarget = Random.Range(0, 3);
+            }
+            targetNumber = newTarget;
+        } else if (Vector3.Distance(transform.position, target) >= 1)
+        {
+
+        }
+
+
+        if (targetNumber != prevNumber)
+        {
+            target = MovePoints[targetNumber].transform.position;
+        }
         transform.position = new Vector3(transform.position.x, StartPos.y, transform.position.z);
+        prevNumber = targetNumber;
     }
 }
