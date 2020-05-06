@@ -106,21 +106,21 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
+    agentRadius: 1.19
+    agentHeight: 2.89
     agentSlope: 45
-    agentClimb: 0.4
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    agentClimb: 0.93
+    ledgeDropHeight: 0.02
+    maxJumpAcrossDistance: 0.02
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.39666668
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 590578893eb944e49ae34ffc42f72a75, type: 2}
 --- !u!4 &10528095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6945599294397100155, guid: 18fc852529c947b42a363e1ed0a7e98b,
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 215710046}
-  FootToWatch: {fileID: 954357412}
+  FootToWatch: {fileID: 432375089}
   footLateralEase:
     serializedVersion: 2
     m_Curve:
@@ -562,6 +562,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1172289195}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &277857594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277857595}
+  m_Layer: 0
+  m_Name: GoPlace3
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277857595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277857594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30, y: 2, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &287164665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2971548649174165890, guid: 478e84196872f924bb7a94b78015d5a3,
@@ -610,6 +640,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1172289195}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &363000940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363000941}
+  m_Layer: 0
+  m_Name: GoPlace1
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363000941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363000940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30, y: 2, z: -30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &423834039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4122699782567823155, guid: 18fc852529c947b42a363e1ed0a7e98b,
@@ -717,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 101556527}
-  FootToWatch: {fileID: 937757056}
+  FootToWatch: {fileID: 1557613223}
   footLateralEase:
     serializedVersion: 2
     m_Curve:
@@ -994,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 18fc852529c947b42a363e1ed0a7e98b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.46201026
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 18fc852529c947b42a363e1ed0a7e98b,
         type: 3}
@@ -1577,7 +1637,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &596056400
 BoxCollider:
@@ -1659,6 +1719,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1172289195}
   m_PrefabAsset: {fileID: 0}
+--- !u!195 &597110715
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597110714}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &597110716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 478e84196872f924bb7a94b78015d5a3,
@@ -1681,6 +1763,23 @@ MonoBehaviour:
   - rig: {fileID: 1158772079}
     active: 1
   m_Effectors: []
+--- !u!114 &597110718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597110714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993ae8ed91a1e444894017859e161df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovePoints:
+  - {fileID: 363000940}
+  - {fileID: 2048889375}
+  - {fileID: 277857594}
+  - {fileID: 2082583048}
 --- !u!1 &632938562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,7 +2361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 1271371939}
-  FootToWatch: {fileID: 432375089}
+  FootToWatch: {fileID: 954357412}
   footLateralEase:
     serializedVersion: 2
     m_Curve:
@@ -2398,7 +2497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 435733406}
-  FootToWatch: {fileID: 49273527}
+  FootToWatch: {fileID: 432375089}
   footLateralEase:
     serializedVersion: 2
     m_Curve:
@@ -3750,7 +3849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 78998147}
-  FootToWatch: {fileID: 1557613223}
+  FootToWatch: {fileID: 432375089}
   footLateralEase:
     serializedVersion: 2
     m_Curve:
@@ -4084,6 +4183,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1158772080}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2048889375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2048889376}
+  m_Layer: 0
+  m_Name: GoPlace2
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2048889376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048889375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30, y: 2, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2082583048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2082583049}
+  m_Layer: 0
+  m_Name: GoPlace4
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2082583049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082583048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30, y: 2, z: -30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2083473800 stripped
 Transform:
