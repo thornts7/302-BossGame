@@ -26,7 +26,7 @@ public class SpiderMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, target) < 1)
+        if (Vector3.Distance(transform.position, target) < 3)
         {
             int newTarget = Random.Range(0, 3);
             while (newTarget == targetNumber)
@@ -34,7 +34,7 @@ public class SpiderMovement : MonoBehaviour
                 newTarget = Random.Range(0, 3);
             }
             targetNumber = newTarget;
-        } else if (Vector3.Distance(transform.position, target) >= 1)
+        } else if (Vector3.Distance(transform.position, target) >= 3)
         {
 
         }
@@ -43,6 +43,7 @@ public class SpiderMovement : MonoBehaviour
         if (targetNumber != prevNumber)
         {
             target = MovePoints[targetNumber].transform.position;
+            Enemy.SetDestination(target);
         }
         transform.position = new Vector3(transform.position.x, StartPos.y, transform.position.z);
         prevNumber = targetNumber;
