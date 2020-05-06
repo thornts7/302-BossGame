@@ -7,12 +7,15 @@ public class SpiderMovement : MonoBehaviour
 {
     public List<GameObject> MovePoints = new List<GameObject>();
     NavMeshAgent Enemy;
-    Vector3 target;
     int targetNumber = 1;
     int prevNumber;
-    float Rotation = 0;
 
     Vector3 StartPos;
+    Vector3 target;
+
+    float percent = 0;
+    Quaternion StartRotation;
+    Quaternion EndRotation;
 
     void Start()
     {
@@ -20,7 +23,12 @@ public class SpiderMovement : MonoBehaviour
         target = MovePoints[targetNumber].transform.position;
         Enemy.SetDestination(target);
         Enemy.updateRotation = false;
+        
         StartPos = transform.position;
+
+        StartRotation = transform.rotation;
+        Vector3 StartEular = transform.rotation.eulerAngles;
+        EndRotation = Quaternion.LookRotation(target);
     }
 
     // Update is called once per frame
@@ -34,9 +42,15 @@ public class SpiderMovement : MonoBehaviour
                 newTarget = Random.Range(0, 3);
             }
             targetNumber = newTarget;
+            StartRotation = transform.rotation;
+            Vector3 StartEular = transform.rotation.eulerAngles;
+            EndRotation = Quaternion.LookRotation(MovePoints[targetNumber].transform.position);
+            percent = 0;
         } else if (Vector3.Distance(transform.position, target) >= 3)
         {
+            if (percent < 1) percent += 0.01f;
 
+            transform.rotation = Quaternion.Slerp(StartRotation, EndRotation, percent);
         }
 
 
