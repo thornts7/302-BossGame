@@ -19,12 +19,6 @@ public class StickyFeetWalking : MonoBehaviour
     Vector3 PlantedStart;
     Vector3 PlantedEnd;
 
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         CheckIfFootCanMove();
