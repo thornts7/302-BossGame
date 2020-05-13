@@ -100,8 +100,8 @@ public class SpiderMovement : MonoBehaviour
                 break;
         }
         // State changing when in and out of range
-        if (Vector3.Distance(transform.position, Player.transform.position) > 40) state = 1;
-        if (Vector3.Distance(transform.position, Player.transform.position) < 15 && state == 1) state = 2;
+        if (Vector3.Distance(transform.position, Player.transform.position) > 55) state = 1;
+        if (Vector3.Distance(transform.position, Player.transform.position) < 35 && state == 1) state = 2;
 
         Debug.DrawLine(Player.transform.position, MidRangeTarget, Color.red);
 
