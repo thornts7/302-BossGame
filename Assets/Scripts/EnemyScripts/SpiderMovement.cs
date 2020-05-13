@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class SpiderMovement : MonoBehaviour
 {
+    public delegate void EnemyStuff();
+    public static EnemyStuff EnemyHurt;
+
     // The possible points to move to
     public List<GameObject> MovePoints = new List<GameObject>();
     // References NavMeshAgent
@@ -52,10 +55,12 @@ public class SpiderMovement : MonoBehaviour
     float StashCounter = 0;
 
     ////////////////////////////// Gameplay
-    int Health = 50;
+    int Health = 100;
 
     void Start()
     {
+        EnemyHurt += enemyIsDamaged;
+
         // Get the player's Position
         Player = GameObject.Find("character1");
         
@@ -120,7 +125,7 @@ public class SpiderMovement : MonoBehaviour
         // Counter tick
         ShootCounter += Time.deltaTime;
         // Shoot and Change state
-        if (ShootCounter > 5)
+        if (ShootCounter > 2)
         {
             Instantiate(Bullet, ShootPoint.position, ShootPoint.rotation);
             ShootCounter = 0;
@@ -172,7 +177,7 @@ public class SpiderMovement : MonoBehaviour
         
         //////////////////////////////////////////// State changing
         // Change state of Spider when: IsAttacking
-        if (AttackCounter > 5)
+        if (AttackCounter > 3)
         {
             state = 3;
             AttackCounter = 0;
@@ -219,5 +224,9 @@ public class SpiderMovement : MonoBehaviour
         }
         // Set the prev target
         prevNumber = targetNumber;
+    }
+    void enemyIsDamaged()
+    {
+        Health--;
     }
 }

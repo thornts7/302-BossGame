@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public delegate void PlayerStuff(GameObject bullet);
+    public static PlayerStuff PlayerDamage;
+
     public float moveSpeed = 5;
     CharacterController pawn;
     float rotation = 180f;
@@ -20,9 +23,10 @@ public class PlayerController : MonoBehaviour
     int alternator = 0;
     bool HasShot;
 
-    int health = 50;
+    public int health = 10;
     void Start()
     {
+        PlayerDamage += HurtMe;
         pawn = GetComponent<CharacterController>();
         Vector3 rot = transform.rotation.eulerAngles;
         rotation = rot.y;
@@ -78,16 +82,18 @@ public class PlayerController : MonoBehaviour
         {
             HasShot = false;
         }
-        // Make hands animated
-        // Make hands move back and then forth
-
-        // Make hands move up and then down
-
-        // Make head follow camera as well
         // Simple rotational lock with clamped angles
         Vector3 A = Camera.transform.rotation.eulerAngles;
         //if (A.x < 20 && A.x < 90) A.x = 20;
         //else if (A.x < 300 && A.x > 260) A.x = 300;
         Neck.transform.rotation = Quaternion.Euler(A);
+    }
+
+    void HurtMe(GameObject bullet)
+    {
+        if (Vector3.Distance(bullet.transform.position, transform.position) < 3)
+        {
+            health--;
+        }
     }
 }

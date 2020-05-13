@@ -7,5 +7,9 @@ public class ProjectileMovement : MonoBehaviour
     float counter = 0;
     void Start() { GetComponent<Rigidbody>().velocity = transform.up * 40; }
     private void Update() { counter++; if (counter > 120) Destroy(gameObject); }
-    private void OnCollisionEnter(Collision collision) { Destroy(gameObject); }
+    private void OnCollisionEnter(Collision collision) 
+    {
+        if (collision.collider.gameObject.name == "SpiderMech") SpiderMovement.EnemyHurt();
+        Destroy(gameObject);
+    }
 }
