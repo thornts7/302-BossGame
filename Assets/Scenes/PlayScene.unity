@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 215710046}
+  StickyManager: {fileID: 1354041932}
   FootToWatch: {fileID: 432375089}
   footLateralEase:
     serializedVersion: 2
@@ -777,6 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 101556527}
+  StickyManager: {fileID: 1354041932}
   FootToWatch: {fileID: 1557613223}
   footLateralEase:
     serializedVersion: 2
@@ -1780,6 +1782,9 @@ MonoBehaviour:
   - {fileID: 2048889375}
   - {fileID: 277857594}
   - {fileID: 2082583048}
+  Gun: {fileID: 1689714455}
+  ShootPoint: {fileID: 271838191}
+  Bullet: {fileID: 269335338293202123, guid: 9a7faa0f5639d9645a09507f16a65b03, type: 3}
 --- !u!1 &632938562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,6 +2366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 1271371939}
+  StickyManager: {fileID: 1354041932}
   FootToWatch: {fileID: 954357412}
   footLateralEase:
     serializedVersion: 2
@@ -2497,6 +2503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 435733406}
+  StickyManager: {fileID: 1354041932}
   FootToWatch: {fileID: 432375089}
   footLateralEase:
     serializedVersion: 2
@@ -3542,6 +3549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 674695198}
+  StickyManager: {fileID: 1354041932}
   FootToWatch: {fileID: 1762325402}
   footLateralEase:
     serializedVersion: 2
@@ -3849,6 +3857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StickyTarget: {fileID: 78998147}
+  StickyManager: {fileID: 1354041932}
   FootToWatch: {fileID: 432375089}
   footLateralEase:
     serializedVersion: 2

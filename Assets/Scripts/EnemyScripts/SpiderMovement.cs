@@ -27,6 +27,30 @@ public class SpiderMovement : MonoBehaviour
 
     // The refernence the the player
     GameObject Player;
+    Vector3 PrevPlayerPos;
+
+    // The midrange target
+    Vector3 MidRangeTarget;
+    Vector3 MoveOffset;
+    // The counters that allow the Spider to shooty shooty
+    float ShootCounter = 0;
+    float AttackCounter = 0;
+    // The boolean that checks if the guy has shot
+    bool HasShot;
+    // The number that determins the offset in surround player mode
+    int Otype;
+    int PrevOtype;
+
+    // Gun Stuff
+    public Transform Gun;
+    public Transform ShootPoint;
+
+    Quaternion OriginalGunRotation;
+
+    public GameObject Bullet;
+
+    float StashCounter = 0;
+    
     void Start()
     {
         // Get the player's Position
@@ -68,20 +92,92 @@ public class SpiderMovement : MonoBehaviour
         }
         // State changing when in and out of range
         if (Vector3.Distance(transform.position, Player.transform.position) > 40) state = 1;
-        if (Vector3.Distance(transform.position, Player.transform.position) < 15) state = 2;
+        if (Vector3.Distance(transform.position, Player.transform.position) < 15 && state == 1) state = 2;
+
+        Debug.DrawLine(Player.transform.position, MidRangeTarget, Color.red);
 
         // Move the spider off the ground
         transform.position = new Vector3(transform.position.x, StartPos.y, transform.position.z);
+        PrevPlayerPos = Player.transform.position;
     }
 
     void Attack()
     {
+        // Stashing Original Rotation To Set It Back
+        if (StashCounter == 0)
+        {
+            OriginalGunRotation = Gun.rotation;
+            StashCounter = 1;
+        }
+        // Aim at player
+        Vector3 targetVector = Player.transform.position - Gun.position;
+        Quaternion DRot = Quaternion.LookRotation(targetVector) * Quaternion.Euler(-90, 180, 0);
+        Gun.rotation = Quaternion.RotateTowards(Gun.rotation, DRot, 90 * Time.deltaTime);
 
+        // Counter tick
+        ShootCounter += Time.deltaTime;
+        // Shoot and Change state
+        if (ShootCounter > 5)
+        {
+            HasShot = true;
+            ShootCounter = 0;
+            StashCounter = 0;
+            Gun.rotation = OriginalGunRotation;
+            state = 2;
+        }
     }
 
     void SurroundPlayer()
     {
+        //////////////////////////////////////////// Movement
+        ///
+        if ((Vector3.Distance(transform.position, MidRangeTarget) < 2) || (Vector3.Distance(transform.position, MidRangeTarget + MoveOffset) < 2))
+        {
+            Otype = Random.Range(1,4);
+            while (Otype == PrevOtype)
+            {
+                Otype = Random.Range(1, 4);
+            }
+            if (Otype == 1) MoveOffset = new Vector3(3, 0, 3);
+            if (Otype == 2) MoveOffset = new Vector3(-3, 0, 3);
+            if (Otype == 3) MoveOffset = new Vector3(3, 0, -3);
+            if (Otype == 4) MoveOffset = new Vector3(-3, 0, -3);
+        }
+        if (Player.transform.position != PrevPlayerPos)
+        {
+            // Update location of Spider Move Target
+            float x = transform.position.x - Player.transform.position.x;
+            float z = transform.position.z - Player.transform.position.z;
+            float angleToPlayer = Mathf.Atan2(x, z);
+            MidRangeTarget.x = 15 * Mathf.Sin(angleToPlayer) + Player.transform.position.x;
+            MidRangeTarget.z = 15 * Mathf.Cos(angleToPlayer) + Player.transform.position.z;
+            MidRangeTarget.y = Player.transform.position.y;
+        }
 
+        Vector3 MRTWO = MidRangeTarget + MoveOffset;
+        
+        // Change target to Spider Move Target
+        Enemy.SetDestination(MRTWO);
+        
+        /////////////////////////////////////////// Rotation
+        // Update rotation vector
+        Vector3 targetVector = Player.transform.position - transform.position;
+        // Get quaternion of rotation
+        Quaternion DRot = Quaternion.LookRotation(targetVector);
+        // Update rotation of the spider
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, DRot, 90 * Time.deltaTime);
+        
+        //////////////////////////////////////////// State changing
+        // Change state of Spider when: IsAttacking
+        if (AttackCounter > 5)
+        {
+            HasShot = false;
+            state = 3;
+            AttackCounter = 0;
+        }
+        // Counter tick
+        AttackCounter += Time.deltaTime;
+        PrevOtype = Otype;
     }
 
     /// <summary>
@@ -115,7 +211,7 @@ public class SpiderMovement : MonoBehaviour
         }
 
         // if the target is different change the agent's target
-        if (targetNumber != prevNumber)
+        if (targetNumber != prevNumber || Enemy.destination != target)
         {
             Enemy.SetDestination(target);
         }

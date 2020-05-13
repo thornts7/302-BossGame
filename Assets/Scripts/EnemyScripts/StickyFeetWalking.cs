@@ -5,6 +5,7 @@ using UnityEngine;
 public class StickyFeetWalking : MonoBehaviour
 {
     public Transform StickyTarget;
+    public Transform StickyManager;
     float MoveDistanceThreshold = 1.5f;
 
     public StickyFeetWalking FootToWatch;
@@ -61,7 +62,9 @@ public class StickyFeetWalking : MonoBehaviour
         {
             footMoveTimer = 0;
             PlantedStart = transform.position;
+            PlantedStart.y = StickyManager.position.y;
             PlantedEnd = hit.point + Vector3.up * 1.75f;
+            PlantedEnd.y = StickyManager.position.y;
         }
     }
     bool IsAnimating()
