@@ -35,22 +35,25 @@ public class SpiderMovement : MonoBehaviour
     // The counters that allow the Spider to shooty shooty
     float ShootCounter = 0;
     float AttackCounter = 0;
-    // The boolean that checks if the guy has shot
-    bool HasShot;
     // The number that determins the offset in surround player mode
     int Otype;
     int PrevOtype;
 
-    // Gun Stuff
+    [Header("Gun Stuff")]
+    // The Turret on top
     public Transform Gun;
+    // The point the gun shoots out of
     public Transform ShootPoint;
-
+    // The rotaton before aiming at player
     Quaternion OriginalGunRotation;
-
+    // The bullet prefab
     public GameObject Bullet;
-
+    // The counter that queues the cacheing of the rotation
     float StashCounter = 0;
-    
+
+    ////////////////////////////// Gameplay
+    int Health = 50;
+
     void Start()
     {
         // Get the player's Position
@@ -119,7 +122,7 @@ public class SpiderMovement : MonoBehaviour
         // Shoot and Change state
         if (ShootCounter > 5)
         {
-            HasShot = true;
+            Instantiate(Bullet, ShootPoint.position, ShootPoint.rotation);
             ShootCounter = 0;
             StashCounter = 0;
             Gun.rotation = OriginalGunRotation;
@@ -171,7 +174,6 @@ public class SpiderMovement : MonoBehaviour
         // Change state of Spider when: IsAttacking
         if (AttackCounter > 5)
         {
-            HasShot = false;
             state = 3;
             AttackCounter = 0;
         }
