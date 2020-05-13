@@ -12,10 +12,11 @@ public class PlayerController : MonoBehaviour
     public Vector3 walkDir { get; private set; }
 
     public List<GameObject> Shootpoints = new List<GameObject>();
-    public GameObject Projectile;
     public List<GameObject> WristConstraints = new List<GameObject>();
     List<Vector3> WCOriginalPos = new List<Vector3>();
+    public GameObject Projectile;
     public GameObject Camera;
+    public GameObject Neck;
     int alternator = 0;
     bool HasShot;
 
@@ -77,5 +78,6 @@ public class PlayerController : MonoBehaviour
 
         // Make head follow camera as well
         // Simple rotational lock with clamped angles
+
     }
 }
