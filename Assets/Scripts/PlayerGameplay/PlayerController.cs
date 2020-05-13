@@ -57,6 +57,13 @@ public class PlayerController : MonoBehaviour
         WristConstraints[0].transform.rotation = Camera.transform.rotation * Quaternion.Euler(-90, 0, 0);
         WristConstraints[1].transform.rotation = Camera.transform.rotation * Quaternion.Euler(-90, 0, 0);
         // Move
+        float angle = Camera.transform.rotation.eulerAngles.x * Mathf.PI/180;
+        float y = Mathf.Sin(angle);
+        Vector3 B = WristConstraints[0].transform.position;
+        Vector3 C = WristConstraints[2].transform.position;
+        Vector3 D = WristConstraints[1].transform.position;
+        WristConstraints[0].transform.position = new Vector3(B.x, C.y + y, B.z);
+        WristConstraints[1].transform.position = new Vector3(D.x, C.y + y, D.z);
 
         // Create bullet at one of the two shoot points on mouse click
         if (Input.GetMouseButtonDown(0) && !HasShot)
@@ -78,6 +85,9 @@ public class PlayerController : MonoBehaviour
 
         // Make head follow camera as well
         // Simple rotational lock with clamped angles
-
+        Vector3 A = Camera.transform.rotation.eulerAngles;
+        //if (A.x < 20 && A.x < 90) A.x = 20;
+        //else if (A.x < 300 && A.x > 260) A.x = 300;
+        Neck.transform.rotation = Quaternion.Euler(A);
     }
 }
