@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -87,6 +88,10 @@ public class PlayerController : MonoBehaviour
         //if (A.x < 20 && A.x < 90) A.x = 20;
         //else if (A.x < 300 && A.x > 260) A.x = 300;
         Neck.transform.rotation = Quaternion.Euler(A);
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     void HurtMe(GameObject bullet)

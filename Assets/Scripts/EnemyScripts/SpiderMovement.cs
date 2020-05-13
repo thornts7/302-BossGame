@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class SpiderMovement : MonoBehaviour
 {
@@ -107,6 +108,11 @@ public class SpiderMovement : MonoBehaviour
         // Move the spider off the ground
         transform.position = new Vector3(transform.position.x, StartPos.y, transform.position.z);
         PrevPlayerPos = Player.transform.position;
+
+        if (Health <= 0)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     void Attack()
